@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { ModalComponent } from './../modal/modal.component';
+import { Component, OnInit, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-home',
@@ -6,11 +7,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  title = `App works !`;
+  @ViewChild(ModalComponent) modal: ModalComponent;
 
   constructor() { }
 
   ngOnInit() {
+  }
+
+  newDialog() {
+    this.modal.show();
   }
 
 }
