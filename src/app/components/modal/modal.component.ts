@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ChangeDetectorRef } from '@angular/core';
 
 @Component({
   selector: 'app-modal',
@@ -9,7 +9,9 @@ export class ModalComponent implements OnInit {
 
   @ViewChild('myModal') myModal;
 
-  constructor() { }
+  modalInnerHtml: string = 'Use setInnerHtml function to set the view of this modal.';
+
+  constructor(private changeRef: ChangeDetectorRef) { }
 
   ngOnInit() {
     // When the user clicks anywhere outside of the modal, close it
@@ -27,5 +29,10 @@ export class ModalComponent implements OnInit {
 
   hide() {
     this.myModal.nativeElement.style.display = "none";
+  }
+
+  setInnerHtml(html: string) {
+    this.modalInnerHtml = html;
+    this.changeRef.detectChanges();
   }
 }

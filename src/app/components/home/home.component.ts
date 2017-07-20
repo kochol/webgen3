@@ -16,6 +16,7 @@ export class HomeComponent implements OnInit {
 
   newDialog() {
     this.modal.show();
+    this.modal.setInnerHtml('Modal works!!!');    
   }
 
 }
