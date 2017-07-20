@@ -4,8 +4,11 @@
   <!-- Modal content -->
   <div class="modal-content">
       <span class="close" (click)="hide()">&times;</span>
-    <div class="modal-body" [innerHTML]="modalInnerHtml">
-    </div>
+    <div class="modal-body">
+      <div  [innerHTML]="modalInnerHtml">
+      </div>
+      <dcl-wrapper></dcl-wrapper>
+    </div>    
   </div>
 
 </div>

@@ -1,5 +1,5 @@
 import { ModalComponent } from './../modal/modal.component';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, Type } from '@angular/core';
 
 @Component({
   selector: 'app-home',
@@ -16,7 +16,8 @@ export class HomeComponent implements OnInit {
 
   newDialog() {
     this.modal.show();
-    this.modal.setInnerHtml('Modal works!!!');    
+    this.modal.setInnerHtml('Modal works!!!');
+    this.modal.setComponent(HomeComponent);
   }
 
 }

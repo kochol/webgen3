@@ -1,4 +1,5 @@
-import { Component, OnInit, ViewChild, ChangeDetectorRef } from '@angular/core';
+import { DclWrapper } from './../dclwrapper';
+import { Component, OnInit, ViewChild, ChangeDetectorRef, Type } from '@angular/core';
 
 @Component({
   selector: 'app-modal',
@@ -8,7 +9,8 @@ import { Component, OnInit, ViewChild, ChangeDetectorRef } from '@angular/core';
 export class ModalComponent implements OnInit {
 
   @ViewChild('myModal') myModal;
-
+  @ViewChild(DclWrapper) dcl: DclWrapper;
+  
   modalInnerHtml: string = 'Use setInnerHtml function to set the view of this modal.';
 
   constructor(private changeRef: ChangeDetectorRef) { }
@@ -34,5 +36,10 @@ export class ModalComponent implements OnInit {
   setInnerHtml(html: string) {
     this.modalInnerHtml = html;
     this.changeRef.detectChanges();
+  }
+
+  setComponent(type: any) {
+    this.dcl.type = type;
+    this.dcl.updateComponent();
   }
 }
