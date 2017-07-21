@@ -11,7 +11,7 @@ export class ModalComponent implements OnInit {
   @ViewChild('myModal') myModal;
   @ViewChild(DclWrapper) dcl: DclWrapper;
   
-  modalInnerHtml: string = 'Use setInnerHtml function to set the view of this modal.';
+  modalInnerHtml: string = '';
 
   constructor(private changeRef: ChangeDetectorRef) { }
 

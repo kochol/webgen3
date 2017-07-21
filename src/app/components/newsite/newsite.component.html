@@ -1,0 +1,16 @@
+<div class="form">
+  <h2>
+    Create a new Website project
+  </h2>
+  <md-input-container>
+    <input mdInput placeholder="Website name" [(ngModel)]="name">
+  </md-input-container>
+  <br>
+  <md-input-container>
+    <input mdInput placeholder="Website path" [(ngModel)]="path">
+  </md-input-container>
+  <button md-button (click)="browse()">Browse</button>
+  <input type="file" (change)="folderSelect($event)" webkitdirectory style="display: none" #folderDialog />
+  <br>
+  <button md-raised-button (click)="create()">Create</button>
+</div>

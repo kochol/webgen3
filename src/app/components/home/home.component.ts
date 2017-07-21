@@ -1,3 +1,4 @@
+import { NewsiteComponent } from './../newsite/newsite.component';
 import { ModalComponent } from './../modal/modal.component';
 import { Component, OnInit, ViewChild, Type } from '@angular/core';
 
@@ -16,8 +17,7 @@ export class HomeComponent implements OnInit {
 
   newDialog() {
     this.modal.show();
-    this.modal.setInnerHtml('Modal works!!!');
-    this.modal.setComponent(HomeComponent);
+    this.modal.setComponent(NewsiteComponent);
   }
 
 }
