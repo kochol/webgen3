@@ -1,3 +1,4 @@
+import { AppConfig } from './../../classes/appConfig';
 import { Component, OnInit, ViewChild } from '@angular/core';
 
 @Component({
@@ -33,7 +34,9 @@ export class NewsiteComponent implements OnInit {
   }
 
   create() {
-    
+    if (AppConfig.getProject().newProject(this.name, this.path)) {
+      // The project created.
+    }
   }
 
 }
