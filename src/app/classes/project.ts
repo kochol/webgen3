@@ -2,6 +2,17 @@ var fs = require('fs');
 
 export class Project {
 
+	private static project: Project
+
+	// Get singleton object
+	public static getSingleton(): Project {
+		if (this.project)
+			return this.project;
+
+		this.project = new Project();
+		return this.project;
+	}
+
 	// Create a new project
 	public newProject(name: string, path: string): boolean {
 		// Check the folder
