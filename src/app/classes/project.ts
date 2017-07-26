@@ -1,8 +1,10 @@
-var fs = require('fs');
+import * as fs from 'fs';
 
 export class Project {
 
 	private static project: Project
+	name: string;
+	path: string;
 
 	// Get singleton object
 	public static getSingleton(): Project {
@@ -14,7 +16,7 @@ export class Project {
 	}
 
 	// Create a new project
-	public newProject(name: string, path: string): boolean {
+	public newProject(name: string, path: string): boolean {		
 		// Check the folder
 		if (fs.existsSync(path + "/" + name)) {
 			alert("The folder is already exist.");
@@ -47,6 +49,12 @@ export class Project {
 				return false;
 			}
 		});
+
+		return true;
+	}
+
+	public openProject(path: string): boolean {
+		var data = fs.readFileSync(path).toString();
 
 		return true;
 	}

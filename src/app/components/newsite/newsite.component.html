@@ -12,9 +12,9 @@
   </md-input-container>
   <br>
   <md-input-container>
-    <input mdInput placeholder="Website path" [(ngModel)]="path" name="path" #path="ngModel" required>
-    <div *ngIf="path.errors && (path.dirty || path.touched)">
-      <md-error *ngIf="path.errors.required">
+    <input mdInput placeholder="Website path" [(ngModel)]="path" name="pathi" #pathi="ngModel" required>
+    <div *ngIf="pathi.errors && (pathi.dirty || pathi.touched)">
+      <md-error *ngIf="pathi.errors.required">
         Website name is required.
       </md-error>
     </div>

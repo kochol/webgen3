@@ -9,9 +9,9 @@
     Start
   </h2>
   <a (click)="newDialog()">New website</a>
-  <input type="file" webkitdirectory style="display: none" />
   <br>
-  <a>Open website</a>
+  <a (click)="openProject()">Open website</a>
+  <input type="file" (change)="fileSelect($event)" #openDialog accept=".pwg" style="display: none" />
   
   <h2 class="title">
     Recent projects

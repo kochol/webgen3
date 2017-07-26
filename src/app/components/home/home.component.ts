@@ -1,3 +1,4 @@
+import { Project } from './../../classes/project';
 import { NewsiteComponent } from './../newsite/newsite.component';
 import { ModalComponent } from './../modal/modal.component';
 import { Component, OnInit, ViewChild, Type } from '@angular/core';
@@ -9,6 +10,7 @@ import { Component, OnInit, ViewChild, Type } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
   @ViewChild(ModalComponent) modal: ModalComponent;
+  @ViewChild('openDialog') openDialog;  
 
   constructor() { }
 
@@ -20,4 +22,12 @@ export class HomeComponent implements OnInit {
     this.modal.setComponent(NewsiteComponent);
   }
 
+  openProject() {
+    this.openDialog.nativeElement.click();
+  }
+
+  fileSelect(event: any) {
+    var fileInput = <HTMLInputElement>event.target;
+    Project.getSingleton().openProject(fileInput.files[0].path);
+  }
 }
