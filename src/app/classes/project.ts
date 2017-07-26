@@ -5,6 +5,9 @@ export class Project {
 	private static project: Project
 	name: string;
 	path: string;
+	projectInfo: JSON;
+	models: string;
+	controllers: string;
 
 	// Get singleton object
 	public static getSingleton(): Project {
@@ -27,7 +30,7 @@ export class Project {
 		fs.mkdirSync(path + "/" + name);
 
 		// Create project file .pwg
-		fs.writeFile(path + '/' + name + '/' + name + '.pwg', '', function (err) {
+		fs.writeFile(path + '/' + name + '/' + name + '.pwg', '{ }', function (err) {
 			if (err) {
 				console.log(err);
 				return false;
@@ -50,12 +53,21 @@ export class Project {
 			}
 		});
 
-		return true;
+		return this.openProject(path + '/' + name + '/' + name + '.pwg');
 	}
 
 	public openProject(path: string): boolean {
-		var data = fs.readFileSync(path).toString();
+		this.projectInfo = JSON.parse(fs.readFileSync(path).toString());
+		this.name = path.slice(path.lastIndexOf('\\') + 1, path.lastIndexOf('.'));
+		this.path = path.slice(0, path.lastIndexOf('\\') + 1);
+		this.models = fs.readFileSync(this.path + "models.yaml").toString();
+		this.controllers = fs.readFileSync(this.path + "controllers.yaml").toString();
 
+		console.log(this.projectInfo);
+		console.log(this.name);
+		console.log(this.path);
+		console.log(this.models);
+		console.log(this.controllers);
 		return true;
 	}
 }
