@@ -14,6 +14,7 @@ import { HomeComponent } from './components/home/home.component';
 import { ModalComponent } from './components/modal/modal.component';
 import { DclWrapper } from './components/dclwrapper';
 import { NewsiteComponent } from './components/newsite/newsite.component';
+import { IdeComponent } from './components/ide/ide.component';
 
 import { AppRoutingModule } from './app-routing.module';
 
@@ -25,7 +26,8 @@ import { ElectronService } from './providers/electron.service';
     HomeComponent,
     ModalComponent,
     DclWrapper,
-    NewsiteComponent
+    NewsiteComponent,
+    IdeComponent
   ],
   imports: [
     BrowserModule,

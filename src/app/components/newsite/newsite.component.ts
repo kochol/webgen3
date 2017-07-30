@@ -1,5 +1,6 @@
 import { Project } from './../../classes/project';
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-newsite',
@@ -12,7 +13,7 @@ export class NewsiteComponent implements OnInit {
   path: string = "C:\\";
   name: string;
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
     var lastFolder = localStorage.getItem('LastFolder');
@@ -36,6 +37,7 @@ export class NewsiteComponent implements OnInit {
   create() {
     if (Project.getSingleton().newProject(this.name, this.path)) {
       // The project created.
+      this.router.navigate(['ide']);
     }
   }
 
