@@ -10,7 +10,7 @@ import { Component, OnInit, ViewChild, Type } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
   @ViewChild(ModalComponent) modal: ModalComponent;
-  @ViewChild('openDialog') openDialog;  
+  @ViewChild('openDialog') openDialog;
 
   constructor() { }
 
@@ -27,7 +27,7 @@ export class HomeComponent implements OnInit {
   }
 
   fileSelect(event: any) {
-    var fileInput = <HTMLInputElement>event.target;
+    const fileInput = <HTMLInputElement>event.target;
     Project.getSingleton().openProject(fileInput.files[0].path);
   }
 }
