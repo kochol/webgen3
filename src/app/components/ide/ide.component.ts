@@ -1,3 +1,5 @@
+import { Router } from '@angular/router';
+import { Project } from './../../classes/project';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class IdeComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
+    if (!Project.getSingleton().isProjectLoaded)
+      if (!Project.getSingleton().openLastProject())
+        this.router.navigate(['/']);
   }
 
 }

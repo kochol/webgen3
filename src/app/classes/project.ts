@@ -3,6 +3,7 @@ import * as fs from 'fs';
 export class Project {
 
 	private static project: Project
+	public isProjectLoaded = false;
 	name: string;
 	path: string;
 	projectInfo: JSON;
@@ -70,7 +71,8 @@ export class Project {
 		console.log(this.controllers);
 		
 		localStorage.setItem('lastProjectPath', path);
-		
+		this.isProjectLoaded = true;
+
 		return true;
 	}
 
