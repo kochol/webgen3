@@ -28,15 +28,9 @@ export class HomeComponent implements OnInit {
   }
 
   fileSelect(event: any) {
-<<<<<<< HEAD
     const fileInput = <HTMLInputElement>event.target;
-    Project.getSingleton().openProject(fileInput.files[0].path);
-=======
-    var fileInput = <HTMLInputElement>event.target;
-    if (Project.getSingleton().openProject(fileInput.files[0].path))
-    {
+    if (Project.getSingleton().openProject(fileInput.files[0].path)) {
       this.router.navigate(['ide']);
     }
->>>>>>> a42ee7101d163cba90ba45973e50d6cd615b2b06
   }
 }

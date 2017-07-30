@@ -68,6 +68,20 @@ export class Project {
 		console.log(this.path);
 		console.log(this.models);
 		console.log(this.controllers);
+		
+		localStorage.setItem('lastProjectPath', path);
+		
 		return true;
+	}
+
+	/**
+	 * openLastProject
+	 */
+	public openLastProject(): boolean {
+		var lastProjectPath = localStorage.getItem("lastProjectPath");
+		if (lastProjectPath)
+			return this.openProject(lastProjectPath);
+		
+		return false;
 	}
 }
