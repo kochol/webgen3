@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Project } from './../../classes/project';
 import { NewsiteComponent } from './../newsite/newsite.component';
 import { ModalComponent } from './../modal/modal.component';
@@ -12,7 +13,7 @@ export class HomeComponent implements OnInit {
   @ViewChild(ModalComponent) modal: ModalComponent;
   @ViewChild('openDialog') openDialog;  
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
   }
@@ -28,6 +29,9 @@ export class HomeComponent implements OnInit {
 
   fileSelect(event: any) {
     var fileInput = <HTMLInputElement>event.target;
-    Project.getSingleton().openProject(fileInput.files[0].path);
+    if (Project.getSingleton().openProject(fileInput.files[0].path))
+    {
+      this.router.navigate(['ide']);
+    }
   }
 }
