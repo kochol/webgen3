@@ -1,0 +1,25 @@
+.container {
+  display: flex;
+}
+
+.left_toolbar {
+	flex: none;
+	width: 50px;
+	padding: 5px;
+}
+
+.tab1 {
+  flex: initial;
+  width: 300px;
+  min-width: 100px;
+}
+
+.editor {
+	flex: 1;
+}
+
+.home_btn {
+	position: fixed;
+	bottom: 5px;
+	left: 5px;
+}
