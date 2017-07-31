@@ -15,6 +15,7 @@ import { ModalComponent } from './components/modal/modal.component';
 import { DclWrapper } from './components/dclwrapper';
 import { NewsiteComponent } from './components/newsite/newsite.component';
 import { IdeComponent } from './components/ide/ide.component';
+import { FilesComponent } from './components/files/files.component';
 
 import { AppRoutingModule } from './app-routing.module';
 
@@ -27,7 +28,8 @@ import { ElectronService } from './providers/electron.service';
     ModalComponent,
     DclWrapper,
     NewsiteComponent,
-    IdeComponent
+    IdeComponent,
+    FilesComponent
   ],
   imports: [
     BrowserModule,

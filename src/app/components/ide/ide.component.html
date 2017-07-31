@@ -1,18 +1,22 @@
 <div class="container">
   <div class="left_toolbar">
+    
     <div class="home_btn">
       <a md-mini-fab [routerLink]="['/']">
         <md-icon>home</md-icon>
       </a>
     </div>
+
     <button md-mini-fab><md-icon>code</md-icon></button>
     <button md-mini-fab><md-icon>search</md-icon></button>
-  </div>
-  <div class="tab1">
-    tab1
-  </div>
-  <div class="editor">
 
+  </div>
+
+  <div class="tab1">
+    <app-files></app-files>
+  </div>
+
+  <div class="editor">
     editor
   </div>
 </div>

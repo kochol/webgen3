@@ -1,5 +1,6 @@
 .container {
   display: flex;
+	height: 100%;
 }
 
 .left_toolbar {
@@ -12,6 +13,8 @@
   flex: initial;
   width: 300px;
   min-width: 100px;
+	border-left: solid white 1px;
+	border-right: solid white 1px;	
 }
 
 .editor {
