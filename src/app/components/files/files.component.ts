@@ -13,8 +13,13 @@ export class FilesComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    var proj = Project.getSingleton();
-    this.name = proj.name;
+    setTimeout(() => {
+      var proj = Project.getSingleton();
+      this.name = proj.name;
+    }, 100);
   }
 
+  open(filename: string) {
+    console.log(filename);
+  }
 }

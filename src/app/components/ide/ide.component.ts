@@ -9,12 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class IdeComponent implements OnInit {
 
+  testFile = "models.yaml";
+
   constructor(private router: Router) { }
 
   ngOnInit() {
+    setTimeout(() => {
     if (!Project.getSingleton().isProjectLoaded)
       if (!Project.getSingleton().openLastProject())
-        this.router.navigate(['/']);    
+        this.router.navigate(['/']);      
+    }, 100);
   }
 
 }
