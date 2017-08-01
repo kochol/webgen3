@@ -7,7 +7,8 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { MdInputModule, MdButtonModule, MdIconModule } from '@angular/material';
+import { MdInputModule, MdButtonModule, MdIconModule
+  , MdChipsModule } from '@angular/material';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
@@ -41,7 +42,8 @@ import { ElectronService } from './providers/electron.service';
     BrowserAnimationsModule,
     MdInputModule,
     MdButtonModule,
-    MdIconModule
+    MdIconModule,
+    MdChipsModule
   ],
   entryComponents: [
     NewsiteComponent

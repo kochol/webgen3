@@ -2,7 +2,7 @@
 html, body {
   margin: 0;
   padding: 0;
-  background-color: #080808;
+  background-color: #252526;
   color: white;
 
   height: 100%;
@@ -10,7 +10,7 @@ html, body {
 
 .form {
   padding: 30px;
-  background-color: #080808;  
+  background-color: #252526;  
 }
 
 @mixin md-icon-size($size: 24px) {
@@ -22,3 +22,4 @@ html, body {
 .material-icons.mat-icon {
   @include md-icon-size(36px);
 }
+
