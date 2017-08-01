@@ -12,9 +12,13 @@
 			"windows": {
 				"runtimeExecutable": "${workspaceRoot}/node_modules/.bin/electron.cmd"
 			},
+			"outFiles": [
+				"${workspaceRoot}/dist/**/*.js"
+			],
 			"program": "${workspaceRoot}/dist/main.js",
 			"protocol": "legacy",
-			"sourceMaps": true
+			"sourceMaps": true,
+			"stopOnEntry": false
 		}
 	]
 }

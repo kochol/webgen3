@@ -14,7 +14,7 @@ export class IdeComponent implements OnInit {
   ngOnInit() {
     if (!Project.getSingleton().isProjectLoaded)
       if (!Project.getSingleton().openLastProject())
-        this.router.navigate(['/']);
+        this.router.navigate(['/']);    
   }
 
 }
