@@ -9,8 +9,6 @@ import { Component, OnInit } from '@angular/core';
 })
 export class IdeComponent implements OnInit {
 
-  testFile = "models.yaml";
-
   constructor(private router: Router) { }
 
   ngOnInit() {

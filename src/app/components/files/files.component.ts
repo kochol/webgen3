@@ -1,3 +1,4 @@
+import { EditorManager } from './../../classes/editorManager';
 import { Project } from './../../classes/project';
 import { Component, OnInit } from '@angular/core';
 
@@ -20,6 +21,6 @@ export class FilesComponent implements OnInit {
   }
 
   open(filename: string) {
-    console.log(filename);
+    EditorManager.getSingleton().openFile(filename);
   }
 }
