@@ -1,7 +1,9 @@
+import { BehaviorSubject } from "rxjs/BehaviorSubject";
 import { element } from 'protractor';
 import { Project } from './project';
 import { EditorComponent } from './../components/editor/editor.component';
 import * as fs from 'fs';
+import { Observable } from "rxjs/Observable";
 
 export class OpenedFile {
     name: string;
@@ -15,8 +17,11 @@ export class EditorManager {
     private static editorMan: EditorManager;
 
     aceEditor: any;
-    openedFiles: OpenedFile[] = [];
-    currentFile: OpenedFile = null;
+    private openedFiles: OpenedFile[] = [];
+    private openedFiles$: BehaviorSubject<OpenedFile>[] = [];
+    private openedFilesCount$ = new BehaviorSubject<number>(0);
+    private currentFile: OpenedFile = null;
+    private currentFile$ = new BehaviorSubject<OpenedFile>(null);
 
     // Get editor manager singlton object
     public static getSingleton(): EditorManager {
@@ -27,11 +32,34 @@ export class EditorManager {
         return this.editorMan;
     }
 
+    // Get opened files count
+    getOpenedFilesCount(): number {
+        return this.openedFiles$.length;
+    }
+
+    // Get opened files count Observable
+    listenOpenedFilesCount(): Observable<number> {
+        return this.openedFilesCount$.asObservable();
+    }
+
+    // Get opened file observable by index
+    getOpenedFile(index: number): Observable<OpenedFile> {
+        return this.openedFiles$[index].asObservable()
+    }
+
+    // Get current file observable
+    getCurrentFile(): Observable<OpenedFile> {
+        return this.currentFile$.asObservable();
+    }
+
     // Init the events
     init() {
         this.aceEditor.getSession().on('change', e => {
             if (this.currentFile) {
                 this.openedFiles[this.currentFile.index].isSaved = false;
+                this.openedFiles$[this.currentFile.index].next(
+                    this.openedFiles[this.currentFile.index]
+                ); 
             }
         });
     }
@@ -82,8 +110,12 @@ export class EditorManager {
             {
                 // Save the temp file
                 this.openedFiles[this.currentFile.index].data = this.aceEditor.getValue();
+                this.openedFiles$[this.currentFile.index].next(
+                    this.openedFiles[this.currentFile.index]
+                );                
             }
         this.currentFile = file;
+        this.currentFile$.next(file);
         this.aceEditor.setValue(file.data);
         this.setCodeHighliting(file.ext);
     }
@@ -102,6 +134,9 @@ export class EditorManager {
         var file = this.readFile(name);
         file.index = this.openedFiles.length;
         this.openedFiles.push(file);
+        var of$ = new BehaviorSubject<OpenedFile>(file);
+        this.openedFiles$.push(of$);
         this.showFile(file);
+        this.openedFilesCount$.next(this.openedFiles$.length);
     }
 }

@@ -1,5 +1,5 @@
 <ul>
-  <li><button md-button (click)="open('models.yaml')">Models.yaml</button></li>
-  <li><button md-button (click)="open('controllers.yaml')">Controllers.yaml</button></li>
-  <li><button md-button (click)="open(name + '.pwg')">{{name}}.pwg</button></li>
+  <li *ngFor="let item of files">
+    <button md-button (click)="open(item)">{{item}}</button>
+  </li>
 </ul>
