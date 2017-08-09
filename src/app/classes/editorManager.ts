@@ -27,6 +27,15 @@ export class EditorManager {
         return this.editorMan;
     }
 
+    // Init the events
+    init() {
+        this.aceEditor.getSession().on('change', e => {
+            if (this.currentFile) {
+                this.openedFiles[this.currentFile.index].isSaved = false;
+            }
+        });
+    }
+
     // Set the coding highliter for editor
     private setCodeHighliting(ext: string) {
         switch (ext) {

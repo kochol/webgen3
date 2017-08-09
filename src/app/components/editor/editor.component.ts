@@ -23,6 +23,7 @@ export class EditorComponent implements OnInit {
     this.editorMan.aceEditor = ace.edit(this.editorDiv.nativeElement);
     this.editorMan.aceEditor.$blockScrolling = Infinity;
     this.editorMan.aceEditor.setTheme("ace/theme/monokai");
+    this.editorMan.init();
   }
 
 }
