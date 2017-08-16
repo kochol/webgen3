@@ -22,6 +22,8 @@ export class EditorManager {
     private openedFilesCount$ = new BehaviorSubject<number>(0);
     private currentFile: OpenedFile = null;
     private currentFile$ = new BehaviorSubject<OpenedFile>(null);
+    private isFileChanging = false;
+    private ignoreFirst = true;
 
     // Get editor manager singlton object
     public static getSingleton(): EditorManager {
@@ -55,13 +57,38 @@ export class EditorManager {
     // Init the events
     init() {
         this.aceEditor.getSession().on('change', e => {
-            if (this.currentFile) {
+            if (this.ignoreFirst) {
+                this.ignoreFirst = false;
+                return;
+            }
+            if (this.currentFile && !this.isFileChanging) {
                 this.openedFiles[this.currentFile.index].isSaved = false;
+                this.openedFiles[this.currentFile.index].data = this.aceEditor.getValue();
                 this.openedFiles$[this.currentFile.index].next(
                     this.openedFiles[this.currentFile.index]
-                ); 
+                );
             }
+            if (this.isFileChanging)
+                this.isFileChanging = false;
         });
+        this.aceEditor.commands.addCommand({
+            name: 'saveCommand',
+            bindKey: { win: 'Ctrl-S', mac: 'Command-S' },
+            exec: editor => {
+                // Save the current file
+                this.SaveFile(this.currentFile);
+                this.openedFiles[this.currentFile.index].isSaved = true;
+                this.openedFiles$[this.currentFile.index].next(
+                    this.openedFiles[this.currentFile.index]
+                );
+            },
+            readOnly: false // false if this command should not apply in readOnly mode
+        });
+    }
+
+    // Save the file to the file system.
+    private SaveFile(file: OpenedFile) {
+        fs.writeFileSync(Project.getSingleton().path + file.name, file.data);
     }
 
     // Set the coding highliter for editor
@@ -96,7 +123,7 @@ export class EditorManager {
     private readFile(name: string): OpenedFile {
         var data = fs.readFileSync(Project.getSingleton().path + name).toString();
         var ext = name.slice(name.lastIndexOf('.') + 1, name.length)
-        
+
         var file = new OpenedFile();
         file.name = name;
         file.ext = ext;
@@ -106,14 +133,13 @@ export class EditorManager {
 
     // show file in editor
     private showFile(file: OpenedFile) {
-        if (this.currentFile != null)
-            {
-                // Save the temp file
-                this.openedFiles[this.currentFile.index].data = this.aceEditor.getValue();
-                this.openedFiles$[this.currentFile.index].next(
-                    this.openedFiles[this.currentFile.index]
-                );                
-            }
+        if (this.currentFile != null) {
+            // Save the temp file
+            this.openedFiles[this.currentFile.index].data = this.aceEditor.getValue();
+            this.openedFiles$[this.currentFile.index].next(
+                this.openedFiles[this.currentFile.index]
+            );
+        }
         this.currentFile = file;
         this.currentFile$.next(file);
         this.aceEditor.setValue(file.data);
@@ -122,13 +148,14 @@ export class EditorManager {
 
     // Open a file and show it in editor
     openFile(name: string) {
+        this.isFileChanging = true;
         for (var i = 0; i < this.openedFiles.length; i++) {
             if (this.openedFiles[i].name == name) {
                 // the file is opened already.
                 this.showFile(this.openedFiles[i]);
                 return;
             }
-        }        
+        }
 
         // Open the file
         var file = this.readFile(name);

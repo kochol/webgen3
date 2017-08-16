@@ -1,5 +1,5 @@
 <ul>
   <li *ngFor="let item of files">
-    <button md-button (click)="open(item)">{{item}}</button>
+    <span *ngIf="item.needSave">*</span><button md-button (click)="open(item.name)">{{item.name}}</button>
   </li>
 </ul>
