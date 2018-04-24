@@ -12,10 +12,9 @@ export class Project {
 
 	// Get singleton object
 	public static getSingleton(): Project {
-		if (this.project)
-			return this.project;
-
-		this.project = new Project();
+		if (!this.project)
+			this.project = new Project();
+			
 		return this.project;
 	}
 

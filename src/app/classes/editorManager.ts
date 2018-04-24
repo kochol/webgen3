@@ -27,10 +27,9 @@ export class EditorManager {
 
     // Get editor manager singlton object
     public static getSingleton(): EditorManager {
-        if (this.editorMan)
-            return this.editorMan;
+        if (this.editorMan == null)
+            this.editorMan = new EditorManager();   
 
-        this.editorMan = new EditorManager();
         return this.editorMan;
     }
 
