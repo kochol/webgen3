@@ -13,13 +13,13 @@ html, body {
   background-color: #252526;  
 }
 
-@mixin md-icon-size($size: 24px) {
+@mixin mat-icon-size($size: 24px) {
   font-size: $size;
   height: $size;
   width: $size;
 }
 
 .material-icons.mat-icon {
-  @include md-icon-size(36px);
+  @include mat-icon-size(36px);
 }
 

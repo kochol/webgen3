@@ -87,7 +87,7 @@ export class EditorManager {
 
     // Save the file to the file system.
     private SaveFile(file: OpenedFile) {
-        fs.writeFileSync(Project.getSingleton().path + file.name, file.data);
+        (<any>window).fs.writeFileSync(Project.getSingleton().path + file.name, file.data);
     }
 
     // Set the coding highliter for editor
@@ -120,7 +120,7 @@ export class EditorManager {
 
     // Read the file
     private readFile(name: string): OpenedFile {
-        var data = fs.readFileSync(Project.getSingleton().path + name).toString();
+        var data = (<any>window).fs.readFileSync(Project.getSingleton().path + name).toString();
         var ext = name.slice(name.lastIndexOf('.') + 1, name.length)
 
         var file = new OpenedFile();

@@ -1,4 +1,3 @@
-import * as fs from 'fs';
 
 export class Project {
 
@@ -21,16 +20,16 @@ export class Project {
 	// Create a new project
 	public newProject(name: string, path: string): boolean {		
 		// Check the folder
-		if (fs.existsSync(path + "/" + name)) {
+		if ((<any>window).fs.existsSync(path + "/" + name)) {
 			alert("The folder is already exist.");
 			return false;
 		}
 
 		// Create the project folder
-		fs.mkdirSync(path + "/" + name);
+		(<any>window).fs.mkdirSync(path + "/" + name);
 
 		// Create project file .pwg
-		fs.writeFile(path + '/' + name + '/' + name + '.pwg', '{ }', function (err) {
+		(<any>window).fs.writeFile(path + '/' + name + '/' + name + '.pwg', '{ }', function (err) {
 			if (err) {
 				console.log(err);
 				return false;
@@ -38,7 +37,7 @@ export class Project {
 		});
 
 		// Create model file
-		fs.writeFile(path + '/' + name + '/models.yaml', 'Users:\n', function (err) {
+		(<any>window).fs.writeFile(path + '/' + name + '/models.yaml', 'Users:\n', function (err) {
 			if (err) {
 				console.log(err);
 				return false;
@@ -46,7 +45,7 @@ export class Project {
 		});
 
 		// Create controller file
-		fs.writeFile(path + '/' + name + '/controllers.yaml', '', function (err) {
+		(<any>window).fs.writeFile(path + '/' + name + '/controllers.yaml', '', function (err) {
 			if (err) {
 				console.log(err);
 				return false;
@@ -57,11 +56,11 @@ export class Project {
 	}
 
 	public openProject(path: string): boolean {
-		this.projectInfo = JSON.parse(fs.readFileSync(path).toString());
+		this.projectInfo = JSON.parse((<any>window).fs.readFileSync(path).toString());
 		this.name = path.slice(path.lastIndexOf('\\') + 1, path.lastIndexOf('.'));
 		this.path = path.slice(0, path.lastIndexOf('\\') + 1);
-		this.models = fs.readFileSync(this.path + "models.yaml").toString();
-		this.controllers = fs.readFileSync(this.path + "controllers.yaml").toString();
+		this.models = (<any>window).fs.readFileSync(this.path + "models.yaml").toString();
+		this.controllers = (<any>window).fs.readFileSync(this.path + "controllers.yaml").toString();
 
 		console.log(this.projectInfo);
 		console.log(this.name);

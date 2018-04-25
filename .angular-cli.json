@@ -1,8 +1,7 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "project": {
-    "name": "angular-electron",
-    "ejected": true
+    "name": "angularelectron"
   },
   "apps": [
     {
@@ -10,7 +9,10 @@
       "outDir": "dist",
       "assets": [
         "assets",
-        "favicon.ico"
+        "favicon.ico",
+        "favicon.png",
+        "favicon.icns",
+        "favicon.256x256.png"
       ],
       "index": "index.html",
       "main": "main.ts",
@@ -20,9 +22,13 @@
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "app",
       "styles": [
+        "../node_modules/font-awesome/css/font-awesome.min.css",
+        "../node_modules/primeng/resources/themes/rocket/theme.css",
+        "../node_modules/primeng/resources/primeng.min.css",
         "styles.scss"
       ],
       "scripts": [
+        "native.js"
       ],
       "environmentSource": "environments/environment.ts",
       "environments": {
@@ -38,13 +44,16 @@
   },
   "lint": [
     {
-      "project": "src/tsconfig.app.json"
+      "project": "src/tsconfig.app.json",
+      "exclude": "**/node_modules/**"
     },
     {
-      "project": "src/tsconfig.spec.json"
+      "project": "src/tsconfig.spec.json",
+      "exclude": "**/node_modules/**"
     },
     {
-      "project": "e2e/tsconfig.e2e.json"
+      "project": "e2e/tsconfig.e2e.json",
+      "exclude": "**/node_modules/**"
     }
   ],
   "test": {
