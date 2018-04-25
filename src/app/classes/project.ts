@@ -57,8 +57,16 @@ export class Project {
 
 	public openProject(path: string): boolean {
 		this.projectInfo = JSON.parse((<any>window).fs.readFileSync(path).toString());
-		this.name = path.slice(path.lastIndexOf('\\') + 1, path.lastIndexOf('.'));
-		this.path = path.slice(0, path.lastIndexOf('\\') + 1);
+		if (path.lastIndexOf('\\') > 0)
+		{
+			this.name = path.slice(path.lastIndexOf('\\') + 1, path.lastIndexOf('.'));
+			this.path = path.slice(0, path.lastIndexOf('\\') + 1);
+		}
+		else
+		{
+			this.name = path.slice(path.lastIndexOf('/') + 1, path.lastIndexOf('.'));
+			this.path = path.slice(0, path.lastIndexOf('/') + 1);			
+		}
 		this.models = (<any>window).fs.readFileSync(this.path + "models.yaml").toString();
 		this.controllers = (<any>window).fs.readFileSync(this.path + "controllers.yaml").toString();
 

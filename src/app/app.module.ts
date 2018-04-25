@@ -18,7 +18,7 @@ import { ElectronService } from './providers/electron.service';
 import { WebviewDirective } from './directives/webview.directive';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { MatInputModule, MatButtonModule, MatIconModule
+import { MatFormFieldModule, MatInputModule, MatButtonModule, MatIconModule
   , MatChipsModule } from '@angular/material';
 
 import {TabMenuModule} from 'primeng/tabmenu';
@@ -60,6 +60,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     MatButtonModule,
     MatIconModule,
     MatChipsModule,
+    MatFormFieldModule,
     TabMenuModule,
     TranslateModule.forRoot({
       loader: {

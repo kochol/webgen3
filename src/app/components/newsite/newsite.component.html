@@ -3,7 +3,7 @@
     Create a new Website project
   </h2>
   <mat-input-container>
-    <input name="lname" mdInput placeholder="Website name" [(ngModel)]="name" #lname="ngModel" required>
+    <input name="lname" matInput placeholder="Website name" [(ngModel)]="name" #lname="ngModel" required>
     <div *ngIf="lname.errors && (lname.dirty || lname.touched)">
       <mat-error *ngIf="lname.errors.required">
         Website name is required.
@@ -12,7 +12,7 @@
   </mat-input-container>
   <br>
   <mat-input-container>
-    <input mdInput placeholder="Website path" [(ngModel)]="path" name="pathi" #pathi="ngModel" required>
+    <input matInput placeholder="Website path" [(ngModel)]="path" name="pathi" #pathi="ngModel" required>
     <div *ngIf="pathi.errors && (pathi.dirty || pathi.touched)">
       <mat-error *ngIf="pathi.errors.required">
         Website name is required.
