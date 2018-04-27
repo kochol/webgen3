@@ -10,6 +10,7 @@ export class OpenedFile {
     ext: string;
     data: string;
     isSaved: boolean = true;
+    isOpened: boolean = false;
     index: number; // The index number in array
 }
 

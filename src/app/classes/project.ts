@@ -37,7 +37,7 @@ export class Project {
 		});
 
 		// Create model file
-		(<any>window).fs.writeFile(path + '/' + name + '/models.yaml', 'Users:\n', function (err) {
+		(<any>window).fs.writeFile(path + '/' + name + '/models.yaml', 'User:\n', function (err) {
 			if (err) {
 				console.log(err);
 				return false;
