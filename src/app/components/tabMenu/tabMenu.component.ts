@@ -29,6 +29,8 @@ export class TabMenuComponent implements OnInit {
       event.preventDefault();
     }
 
+    item.isActive = true;
+
     if (item.command) {
       item.command({
         originalEvent: event,

@@ -55,7 +55,7 @@ export class IdeComponent implements OnInit {
         {
           // New file opened we need to add it.
           this.files.push(value);
-          this.items.push({label: value.name, icon: 'fa-file', isSaved: true
+          this.items.push({label: value.name, icon: 'fa-file', isSaved: true, isActive: true
             , command: (event) => {
               EditorManager.getSingleton().openFile(event.item.label);
             }
@@ -84,6 +84,9 @@ export class IdeComponent implements OnInit {
                 event.item.isVisible = false;
             }
           });
+          if (this.lastItemIndex >= 0)
+            this.items[this.lastItemIndex].isActive = false;
+          this.lastItemIndex = this.items.length - 1;      
         }
       }
     );         
