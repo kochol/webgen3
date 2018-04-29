@@ -77,19 +77,19 @@ export class EditorManager {
             exec: editor => {
                 // Save the current file
                 this.SaveFile(this.currentFile);
-                this.openedFiles[this.currentFile.index].isSaved = true;
-                this.openedFiles$[this.currentFile.index].next(
-                    this.openedFiles[this.currentFile.index]
-                );
             },
             readOnly: false // false if this command should not apply in readOnly mode
         });
     }
 
     // Save the file to the file system.
-    private SaveFile(file: OpenedFile) {
+    SaveFile(file: OpenedFile) {
         (<any>window).fs.writeFileSync(Project.getSingleton().path + file.name, file.data);
-    }
+        this.openedFiles[file.index].isSaved = true;
+        this.openedFiles$[file.index].next(
+            this.openedFiles[file.index]
+        );
+}
 
     // Set the coding highliter for editor
     private setCodeHighliting(ext: string) {

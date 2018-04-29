@@ -1,0 +1,15 @@
+<div class="ui-tabmenu ui-widget ui-widget-content ui-corner-all" (click)="preventDocumentDefault=true">
+  <ul class="ui-tabmenu-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all" role="tablist">
+    <ng-template ngFor let-item [ngForOf]="items">
+      <li *ngIf="item.isVisible !== false" [ngClass]="{'ui-state-active': item.isActive}" class="ui-tabmenuitem ui-state-default ui-corner-top ui-tabmenuitem-hasicon">
+        <a class="ui-menuitem-link ui-corner-all" [href]="item.url||'#'" (click)="itemClick($event, item)">
+          <span class="ui-menuitem-icon fa {{item.icon}}"></span>
+          <span class="ui-menuitem-text"> {{item.label}}</span>
+        </a>
+        <a class="ui-close-btn" href="#" (click)="closeClicked($event, item)">
+          <span class="ui-menuitem-icon fa" [ngClass]="item.isSaved ? 'fa-close': 'fa-circle'"></span>
+        </a>
+      </li>
+    </ng-template>
+  </ul>
+</div>

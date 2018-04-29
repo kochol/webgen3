@@ -1,3 +1,4 @@
+import { TabMenuComponent } from './components/tabMenu/tabMenu.component';
 import 'zone.js/dist/zone-mix';
 import 'reflect-metadata';
 import '../polyfills';
@@ -22,6 +23,8 @@ import { MatFormFieldModule, MatInputModule, MatButtonModule, MatIconModule
   , MatChipsModule } from '@angular/material';
 
 import {TabMenuModule} from 'primeng/tabmenu';
+import {ConfirmDialogModule} from 'primeng/confirmdialog';
+import {ConfirmationService} from 'primeng/api';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
@@ -48,7 +51,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     NewsiteComponent,
     IdeComponent,
     FilesComponent,
-    EditorComponent
+    EditorComponent,
+    TabMenuComponent
   ],
   imports: [
     BrowserModule,
@@ -62,6 +66,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     MatChipsModule,
     MatFormFieldModule,
     TabMenuModule,
+    ConfirmDialogModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -73,7 +78,7 @@ export function HttpLoaderFactory(http: HttpClient) {
   entryComponents: [
     NewsiteComponent
   ],
-  providers: [ElectronService],
+  providers: [ElectronService, ConfirmationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,3 +1,4 @@
+<p-confirmDialog></p-confirmDialog>
 <div class="container">
   <div class="left_toolbar">
 
@@ -17,9 +18,7 @@
   </div>
 
   <div class="editor">
-    <div class="editor-tabs">
-      <p-tabMenu [model]="items"></p-tabMenu>  
-    </div>
+    <app-tabMenu [items]='items'></app-tabMenu>
     <app-editor></app-editor>
   </div>
 </div>
